@@ -16,9 +16,11 @@ public class CarAgent : Agent
     public RewardCalculation rewardCalculation;
     [HideInInspector]
     public TrackRecognition trackRecognition;
+    public RoadInfoToCar roadInfoToCar;
     private Crash crash;
     private AddObservations addObservations;
     private Action action;
+    
 
     [Header("CAR PARAMETER")]
     public float speed = 10f;
@@ -99,6 +101,7 @@ public class CarAgent : Agent
         crash = gameObject.AddComponent(typeof(Crash)) as Crash;
         crash.Initialize(this);
         addObservations = new AddObservations(this);
+        roadInfoToCar = new RoadInfoToCar(this);
         action = new Action(this);
         initialization.Initialize();
         startCarNum = carInformation.startCarNum;

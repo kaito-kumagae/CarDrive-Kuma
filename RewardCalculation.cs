@@ -19,6 +19,7 @@ public class RewardCalculation
     {
         float individualReward = 0.0f;
         carAgent.trackRecognition.TrackRecognize();
+        carAgent.roadInfoToCar.RecognizeLane();
         if (carAgent.movingPreviousTile)
         {
             individualReward = carAgent.movingPreviousTileReward;
