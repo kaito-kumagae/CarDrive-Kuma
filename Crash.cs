@@ -21,7 +21,6 @@ public class Crash : MonoBehaviour
         if (other.gameObject.CompareTag("wall") || other.gameObject.CompareTag("car"))
         {
             var carCenter = carAgent.transform.position + Vector3.up;
-
             carAgent.rewardCalculation.setCrashReward(carAgent.crashReward);
             carAgent.EndEpisode();
             if (carAgent.countPassing == true)
@@ -49,9 +48,17 @@ public class Crash : MonoBehaviour
                         }
                         else
                         {
+                            if (newHit.CompareTag("ConfluenceTile"))
+                            {
+                                evaluator.addOnConfluenceCrashCars(Time.realtimeSinceStartup,otherAgent.speed);
+                            }
                             evaluator.addCrashCars(Time.realtimeSinceStartup,carAgent.speed);
                             if (carAgent.generateNew)
                             {
+                                if (newHit.CompareTag("ConfluenceTile"))
+                                {
+                                    evaluator.addOnConfluenceCrashCars(Time.realtimeSinceStartup,otherAgent.speed);
+                                }
                                 evaluator.addCrashCars(Time.realtimeSinceStartup,otherAgent.speed);
                                 Destroy(other.gameObject);
                                 carInformation.currentCarNum--;
@@ -62,6 +69,14 @@ public class Crash : MonoBehaviour
             }
             else
             {
+                if (Physics.Raycast(carCenter, Vector3.down, out var hit, 2f))
+                {
+                    var newHit = hit.transform;
+                    if (newHit.CompareTag("ConfluenceTile"))
+                    {
+                        evaluator.addOnConfluenceCrashCars(Time.realtimeSinceStartup,carAgent.speed);
+                    }
+                }
                 evaluator.addCrashCars(Time.realtimeSinceStartup, carAgent.speed);
             }
         }

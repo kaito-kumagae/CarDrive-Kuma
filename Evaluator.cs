@@ -13,12 +13,16 @@ class Evaluator{
     private Evaluator(){
         ThroughCars = 0;
         NumCrash = 0;
+        OnConfluenceNumCrash = 0;
         Time = 0;
         //Must be changed for each environment.
         logThroughput = new StreamWriter("logThroughput.csv");
         logThroughput.WriteLine("time,num");
         logThroughput.Close();
         logCrash = new StreamWriter("logCrash.csv");
+        logCrash.WriteLine("time,num,my_speed");
+        logCrash.Close();
+        logCrash = new StreamWriter("logOnConfluenceCrash.csv");
         logCrash.WriteLine("time,num,my_speed");
         logCrash.Close();
         logDistance = new StreamWriter("logDistance.csv");
@@ -47,6 +51,10 @@ class Evaluator{
         get;
         private set;
     }
+    public int OnConfluenceNumCrash{
+        get;
+        private set;
+    }
     public double Time{
         get;
         private set;
@@ -69,6 +77,16 @@ class Evaluator{
         logCrash.WriteLine(Time.ToString() + "," + NumCrash.ToString() + "," + my_speed.ToString());
         logCrash.Close();
         return NumCrash;
+    }
+
+    public int addOnConfluenceCrashCars(double time, double my_speed){
+        OnConfluenceNumCrash++;
+        this.Time = time;
+        Debug.Log("Crash cars: " + OnConfluenceNumCrash.ToString() + " at " + Time.ToString());
+        logCrash = new StreamWriter("logOnConfluenceCrash.csv", true);
+        logCrash.WriteLine(Time.ToString() + "," + NumCrash.ToString() + "," + my_speed.ToString());
+        logCrash.Close();
+        return OnConfluenceNumCrash;
     }
 
     public int getNumCrash(){
