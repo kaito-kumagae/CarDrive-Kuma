@@ -31,16 +31,16 @@ public class RoadInfoToCar
             }
             else
             {
-                observations.Add(0);
-                observations.Add(0); 
-                observations.Add(0);
+                //observations.Add(0);
+               //observations.Add(0); 
+                //observations.Add(0);
             }
         }
         else
         {
-            observations.Add(0);
-            observations.Add(0); 
-            observations.Add(0);
+            //observations.Add(0);
+           // observations.Add(0); 
+            //observations.Add(0);
         }
     }
     public void getCarInfoMineLane(ref List<float> observations)
@@ -52,14 +52,14 @@ public class RoadInfoToCar
         
         Collider[] hitColliders = Physics.OverlapBox(mergingLaneCenter, mergingLaneSize * 0.5f);
 
-        if(hitColliders.Length > 0)
+        /*if(hitColliders.Length > 0)
         {
             observations.Add(1);
         }
         else
         {
             observations.Add(0);
-        }
+        }*/
 
         float closestDistance = float.MaxValue;
         Vector3 closestCarPosition = Vector3.zero;
@@ -77,8 +77,8 @@ public class RoadInfoToCar
                 }
             }
         }
-        observations.Add(closestCarPosition.x);
-        observations.Add(closestCarPosition.z);
+        //observations.Add(closestCarPosition.x);
+        //observations.Add(closestCarPosition.z);
 
         // ここでclosestCarPositionは、MergingLane上で自分の車に最も近い車の位置です。
         // 必要に応じてこの情報を使用します。
@@ -94,14 +94,14 @@ public class RoadInfoToCar
         Collider[] hitColliders = Physics.OverlapBox(mainLaneCenter, mainLaneSize * 0.5f);
         Debug.Log("MineLaneInfoGet");
 
-        if(hitColliders.Length > 0)
+        /*if(hitColliders.Length > 0)
         {
             observations.Add(1);
         }
         else
         {
             observations.Add(0);
-        }
+        }*/
         
         float closestDistance = float.MaxValue;
         Vector3 closestCarPosition = Vector3.zero;
@@ -119,8 +119,8 @@ public class RoadInfoToCar
                 }
             }
         }
-        observations.Add(closestCarPosition.x);
-        observations.Add(closestCarPosition.z);
+        //observations.Add(closestCarPosition.x);
+        //observations.Add(closestCarPosition.z);
     // ここでclosestCarPositionは、MainLane上で自分の車に最も近い車の位置です。
     // 必要に応じてこの情報を使用します。
     }
