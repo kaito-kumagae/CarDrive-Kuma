@@ -61,7 +61,8 @@ public class AddObservations
         observations.Add(carAgent.speed);
         observations.Add(carAgent.torque);
 
-        carAgent.roadInfoToCar.RecognizeLane(ref observations);
+        //carAgent.roadInfoToCar.RecognizeLane(ref observations);
+        carAgent.roadInfoToCar.RecognizeLane();
         return observations;
     }
 

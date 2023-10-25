@@ -12,7 +12,8 @@ public class RoadInfoToCar
         this.carInformation = carAgent.carInformation;
     }
 
-    public void RecognizeLane(ref List<float> observations) //タイルの判別
+    //public void RecognizeLane(ref List<float> observations)
+    public void RecognizeLane()//タイルの判別
     {   
         var carCenter = carAgent.transform.position + Vector3.up;
         if (Physics.Raycast(carCenter, Vector3.down, out var hit, 2f))
@@ -22,14 +23,16 @@ public class RoadInfoToCar
             // If on MainLane tile
             if (newHitTile.CompareTag("MainLaneTile"))　
             {
-                getCarInfoMergingLane(ref observations);
+                //getCarInfoMergingLane(ref observations);
+                getCarInfoMergingLane();
             }
             // If on MergingLane tile
             else if (newHitTile.CompareTag("MergingLaneTile"))
             {
-                getCarInfoMineLane(ref observations);
+                //getCarInfoMineLane(ref observations);
+                getCarInfoMineLane();
             }
-            else
+            /*else
             {
                 observations.Add(0);
                 observations.Add(0); 
@@ -40,10 +43,11 @@ public class RoadInfoToCar
         {
             observations.Add(0);
             observations.Add(0); 
-            observations.Add(0);
+            observations.Add(0);*/
         }
     }
-    public void getCarInfoMineLane(ref List<float> observations)//MineLaneTileの上にいる一番近い車の位置の取得
+    //public void getCarInfoMineLane(ref List<float> observations)
+    public void getCarInfoMineLane()//MineLaneTileの上にいる一番近い車の位置の取得
     {
         Vector3 mergingLaneCenter = new Vector3(-10f, 0f, -15f);
         Vector3 mergingLaneSize = new Vector3(10f, 10f, 10f);
@@ -52,11 +56,13 @@ public class RoadInfoToCar
 
         if(hitColliders.Length > 0)
         {
-            observations.Add(1);
+            //observations.Add(1);
+            Debug.Log("o");
         }
         else
         {
-            observations.Add(0);
+            //observations.Add(0);
+            Debug.Log("x");
         }
 
         float closestDistance = float.MaxValue;
@@ -75,11 +81,16 @@ public class RoadInfoToCar
                 }
             }
         }
-        observations.Add(closestCarPosition.x);
-        observations.Add(closestCarPosition.z);
+        //observations.Add(closestCarPosition.x);
+        Debug.Log("closestCarPosition.x:"+closestCarPosition.x);
+
+       // observations.Add(closestCarPosition.z);
+        Debug.Log("closestCarPosition.z:"+closestCarPosition.z);
+
     }
     
-    public void getCarInfoMergingLane(ref List<float> observations) //MergingLaneTileの上にいる一番近い車の位置の取得
+    //public void getCarInfoMergingLane(ref List<float> observations)
+    public void getCarInfoMergingLane() //MergingLaneTileの上にいる一番近い車の位置の取得
     {
         Vector3 mainLaneCenter = new Vector3(0f, 0f, -25f);
         Vector3 mainLaneSize = new Vector3(10f, 10f, 10f); 
@@ -88,11 +99,13 @@ public class RoadInfoToCar
 
         if(hitColliders.Length > 0)
         {
-            observations.Add(1);
+            //observations.Add(1);
+            Debug.Log("o");
         }
         else
         {
-            observations.Add(0);
+            //observations.Add(0);
+            Debug.Log("x");
         }
         
         float closestDistance = float.MaxValue;
@@ -111,8 +124,11 @@ public class RoadInfoToCar
                 }
             }
         }
-        observations.Add(closestCarPosition.x);
-        observations.Add(closestCarPosition.z);
+         //observations.Add(closestCarPosition.x);
+        Debug.Log("closestCarPosition.x:"+closestCarPosition.x);
+
+       // observations.Add(closestCarPosition.z);
+        Debug.Log("closestCarPosition.z:"+closestCarPosition.z);
     }
 
 }
