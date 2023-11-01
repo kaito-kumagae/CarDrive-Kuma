@@ -46,6 +46,7 @@ public class TrackRecognition
                 else
                 {
                     float angle = Vector3.Angle(carAgent.currentTrack.forward, newHitTile.position - carAgent.currentTrack.position);
+                    if (carAgent.id == 0) Debug.Log(angle);
                     if (angle < 90f)
                     {
                         carAgent.movingForwardTile = true;

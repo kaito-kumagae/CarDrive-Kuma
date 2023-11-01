@@ -57,12 +57,12 @@ public class RoadInfoToCar
         if(hitColliders.Length > 0)
         {
             observations.Add(1);
-            Debug.Log("o");
+            //Debug.Log("o");
         }
         else
         {
             observations.Add(0);
-            Debug.Log("x");
+           // Debug.Log("x");
         }
 
         float closestDistance = float.MaxValue;
@@ -77,15 +77,15 @@ public class RoadInfoToCar
                 {
                     closestDistance = currentDistance;
                     closestCarPosition = hitCollider.transform.position;
-                    Debug.Log("MergingLaneNearCar;"+closestCarPosition);
+                    //Debug.Log("MergingLaneNearCar;"+closestCarPosition);
                 }
             }
         }
         observations.Add(closestCarPosition.x);
-        Debug.Log("closestCarPosition.x:"+closestCarPosition.x);
+       // Debug.Log("closestCarPosition.x:"+closestCarPosition.x);
 
         observations.Add(closestCarPosition.z);
-        Debug.Log("closestCarPosition.z:"+closestCarPosition.z);
+       // Debug.Log("closestCarPosition.z:"+closestCarPosition.z);
 
     }
     
@@ -100,12 +100,12 @@ public class RoadInfoToCar
         if(hitColliders.Length > 0)
         {
             observations.Add(1);
-            Debug.Log("o");
+            //Debug.Log("o");
         }
         else
         {
             observations.Add(0);
-            Debug.Log("x");
+            //Debug.Log("x");
         }
         
         float closestDistance = float.MaxValue;
@@ -120,15 +120,15 @@ public class RoadInfoToCar
                 {
                     closestDistance = currentDistance;
                     closestCarPosition = hitCollider.transform.position;
-                    Debug.Log("MineLaneNearCar;"+closestCarPosition);
+                    //Debug.Log("MineLaneNearCar;"+closestCarPosition);
                 }
             }
         }
         observations.Add(closestCarPosition.x);
-        Debug.Log("closestCarPosition.x:"+closestCarPosition.x);
+       // Debug.Log("closestCarPosition.x:"+closestCarPosition.x);
 
         observations.Add(closestCarPosition.z);
-        Debug.Log("closestCarPosition.z:"+closestCarPosition.z);
+       // Debug.Log("closestCarPosition.z:"+closestCarPosition.z);
     }
 
 }

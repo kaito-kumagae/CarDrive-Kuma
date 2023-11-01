@@ -105,6 +105,7 @@ public class CarAgent : Agent
         action = new Action(this);
         initialization.Initialize();
         startCarNum = carInformation.startCarNum;
+        //Random.InitState(0);
     }
 
     void Update()
